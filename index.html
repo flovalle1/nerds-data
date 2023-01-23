@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dark Theme Data Dashboard</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="kreisdiagram.js"></script>
+  <style>
+
+    .arc path {
+      stroke: #fff;
+    }
+
+    /* Set overall background color to dark gray */
+    body {
+      background-color: #333333;
+    }
+
+    /* Set font color to white */
+    body, h1, h2, h3, p {
+      color: white;
+    }
+
+    /* Add padding and margin for overall layout */
+    .container {
+      padding: 20px;
+      margin: 0px;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Add box shadow for visual interest */
+    .box {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      background-color: #444444;
+      display: inline-block;
+      width:25%;
+      margin: 10px;
+      align-items: center;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    /* Add hover effect for buttons */
+    button:hover {
+      cursor: pointer;
+      background-color: #555555;
+    }
+
+    /* Add custom font */
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+    <div style = "padding-bottom: 0px" class = "container"><img style = "border-radius: 5px; width:100px" src = "https://dienerds.com/wp-content/uploads/2023/01/Nerds_Logo.jpg"></img></div>
+    <div style = "padding-top: 0px" class = "container"><h1 style= "text-align: center;">Nerds Vertriebstool</h1></div>
+  
+    <div class="container">
+        <div id = "box1" class="box">
+          <h2>Cost per Click</h2>
+          <script>window.onload = diagram("#box1");</script>
+        </div>
+        <div id = "box2" class="box">
+          <h2>CAC</h2>
+          <script>window.onload = diagram("#box2");</script>
+        </div>
+        <div id = "box3" class="box">
+            <h2>CTR</h2>
+            <script>window.onload = diagram("#box3");</script>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id = "box4" class="box">
+          <h2>Adspend</h2>
+          <script>window.onload = diagram("#box4");</script>
+        </div>
+        <div id = "box5" class="box">
+          <h2>Revenue</h2>
+          <script>window.onload = diagram("#box5");</script>
+        </div>
+        <div id = "box6" class="box">
+            <h2>Marge</h2>
+            <script>window.onload = diagram("#box6");</script>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>

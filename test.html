@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <style>
+    /* CSS styles for input fields */
+    input[type=number] {
+      width: 50px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+    /* CSS styles for pie charts */
+    .arc path {
+      stroke: #fff;
+    }
+    /* CSS styles for overall layout */
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+    .pie-chart {
+      margin: 0 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <div>
+      <form>
+        <label for="data1">Data 1:</label>
+        <input type="number" id="data1" name="data1"><br>
+        <label for="data2">Data 2:</label>
+        <input type="number" id="data2" name="data2"><br>
+        <label for="data3">Data 3:</label>
+        <input type="number" id="data3" name="data3"><br>
+        <label for="data4">Data 4:</label>
+        <input type="number" id="data4" name="data4"><br>
+        <label for="data5">Data 5:</label>
+        <input type="number" id="data5" name="data5"><br>
+        <label for="data6">Data 6:</label>
+        <input type="number" id="data6" name="data6"><br>
+        <button type="button" onclick="drawPieCharts()">Draw Pie Charts</button>
+      </form>
+</div>
+    <div class="pie-chart" id="pieChart1"></div>
+    <div class="pie-chart" id="pieChart2"></div>
+    <div class="pie-chart" id="pieChart3"></div>
+  </div>
+  <script>
+    function drawPieCharts() {
+      var data1 = +d3.select("#data1").property("value");
+      var data2 = +d3.select("#data2").property("value");
+      var data3 = +d3.select("#data3").property("value");
+      var data4 = +d3.select("#data4").property("value");
+      var data5 = +d3.select("#data5").property("value");
+      var data6 = +d3.select("#data6").property("value");
+      var data = [data1, data2, data3, data4, data5, data6];
+        var width = 150;
+        var height = 150;
+        var radius = Math.min(width, height) / 2;
+
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        var arc = d3.arc()
+          .outerRadius(radius - 10)
+          .innerRadius(0);
+
+        var labelArc = d3.arc()
+          .outerRadius(radius - 40)
+          .innerRadius(radius - 40);
+
+        var pie = d3.pie()
+          .sort(null)
+          .value(function(d) { return d; });
+
+        var svg1 = d3.select("#pieChart1").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var g1 = svg1.selectAll(".arc")
+          .data(pie(data.slice(0, 3)))
+          .enter().append("g")
+          .attr("class", "arc");
+
+        g1.append("path")
+          .attr("d", arc)
+          .style("fill", function(d) { return color(d.data); });
+
+        g1.append("text")
+          .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+          .attr("dy", ".35em")
+          .text(function(d) { return d.data; });
+
+        var svg2 = d3.select("#pieChart2").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var g2 = svg2.selectAll(".arc")
+          .data(pie(data.slice(3, 5)))
+          .enter().append("g")
+          .attr("class", "arc");
+
+        g2.append("path")
+          .attr("d", arc)
+          .style("fill", function(d) { return color(d.data); });
+
+        g2.append("text")
+          .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+          .attr("dy", ".35em")
+          .text(function(d) { return d.data; });
+
+        var svg3 = d3.select("#pieChart3").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var g3 = svg3.selectAll(".arc")
+          .data(pie(data.slice(5)))
+          .enter().append("g")
+          .attr("class", "arc");
+        
+        g3.append("path")
+          .attr("d", arc)
+          .style("fill", function(d) { return color(d.data); });
+        
+        g3.append("text")
+          .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+          .attr("dy", ".35em")
+          .text(function(d) { return d.data; });
+    }
+  </script>
+</body>
+</html>
