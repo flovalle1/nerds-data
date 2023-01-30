@@ -1,5 +1,13 @@
 function diagram(parameter) {
-var data = [30, 10, 43, 55, 13];
+
+    // Extrahieren Sie den Suchstring
+    var queryString = window.location.search;
+
+    // Übersetzen Sie den Suchstring in ein assoziatives Array
+    var params = new URLSearchParams(queryString);
+    var erreichte_audience = params.get("budget")*1000/(params.get("CPM")*params.get("frequenz"))
+    var max_audience = params.get("audience")
+    var data = [erreichte_audience,max_audience-erreichte_audience];
 
     var width = 360;
     var height = 360;

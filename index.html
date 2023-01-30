@@ -6,6 +6,21 @@
   <script src="kreisdiagram.js"></script>
   <style>
 
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+    }
+    input[type="number"],button {
+      width: 40%;
+      height: 30px;
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
     .arc path {
       stroke: #fff;
     }
@@ -56,12 +71,29 @@
 </head>
 
 <body>
+  <form>
+    <label for="audience">Größe der Audience</label>
+    <input type="number" id="audience" name="audience"><br><br>
+    <label for="CPM">CPM</label>
+    <input type="number" id="CPM" name="CPM"><br><br>
+    <label for="frequenz">Frequenz</label>
+    <input type="number" step="0.01" id="frequenz" name="frequenz"><br><br>
+    <label for="budget">Budget</label>
+    <input type="number" id="budget" name="budget"><br><br>
+    <label for="competition">Competition</label>
+    <input type="number" id="competition" name="competition"><br><br>
+    <button type = "submit">Absenden!</button>
+  </form>
+  
+
+
+
     <div style = "padding-bottom: 0px" class = "container"><img style = "border-radius: 5px; width:100px" src = "https://dienerds.com/wp-content/uploads/2023/01/Nerds_Logo.jpg"></img></div>
     <div style = "padding-top: 0px" class = "container"><h1 style= "text-align: center;">Nerds Vertriebstool</h1></div>
   
     <div class="container">
         <div id = "box1" class="box">
-          <h2>Cost per Click</h2>
+          <h2>Erreichte Audience</h2>
           <script>window.onload = diagram("#box1");</script>
         </div>
         <div id = "box2" class="box">
